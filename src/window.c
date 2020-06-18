@@ -30,9 +30,9 @@ void	loop_cub(t_win *win, t_int_tup r, t_scene *sc)
 	if (win->win_ptr == NULL)
 		quit_prog(sc, "Window creation failed");
 	final_print(sc);
-	mlx_hook(win->win_ptr, KEYPRESS, (1L << 0), &key_press, sc);
-	mlx_hook(win->win_ptr, KEYRELEASE, (1L << 1), &key_release, sc);
-	mlx_hook(win->win_ptr, 17, 0, &quit_window, sc);
+	mlx_hook(win->win_ptr, KEYPRESS, (1L<<0), &key_press, sc);
+	mlx_hook(win->win_ptr, KEYRELEASE, (1L<<1), &key_release, sc);
+	mlx_hook(win->win_ptr, 33, (1L<<17), &quit_window, sc);
 	mlx_loop_hook(win->mlx_ptr, &final_print, sc);
 }
 

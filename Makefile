@@ -12,7 +12,7 @@
 
 NAME	=	Cub3D
 
-CC		=	gcc
+CC		=	clang
 
 RM		=	rm -rf
 
@@ -52,11 +52,11 @@ OBJ		=	$(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 HEAD	=	./inc/
 
-INC		=	-I ${HEAD}
+INC		=	-I ${HEAD} -I ./inc/mlx
 
 CFLAGS	=	-Wall -Wextra -Werror -O3
 
-MLX_FLAG =	-lz -L ./inc/mlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAG =	-lm -lbsd -lX11 -lXext
 
 all: ${NAME}
 
@@ -69,7 +69,7 @@ ${DIR_O}/%.o: ${DIR_S}/%.c
 ${NAME} : ${OBJ}
 	@make -C ${LIB}
 	@make -C ./inc/mlx
-	${CC} ${CFLAGS} ./lib/libftprintf.a ${OBJ} ./inc/mlx/libmlx.a ${MLX_FLAG} -o $@
+	${CC} -o $@ ${INC} ${OBJ} ./lib/libftprintf.a ./inc/mlx/libmlx_Linux.a ${CFLAGS} ${MLX_FLAG} 
 
 clean:
 	${RM} ${DIR_O}
