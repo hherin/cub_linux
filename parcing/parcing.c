@@ -24,7 +24,7 @@ static void		set_struct(t_scene *sc, char *line, int *i)
 	if (ft_isdigit(*(line + j)) || sc->w_map)
 	{
 		if (!check_inputs(*sc))
-			quit_parc("Missing some configuration informations before the map");
+			quit_parc_after_sc("Miss config info before map", sc, line);
 		switch_maps(&sc->w_map, *i, line + j, sc);
 		*i += 1;
 	}
@@ -49,7 +49,7 @@ t_scene			rc_parcing(char *av)
 		if (ret == 0)
 			break ;
 	}
-	(sc.pl.pos.x != -1) ? 0 : quit_parc("no player");
+	(sc.pl.pos.x != -1) ? 0 : quit_parc_after_sc("no player", &sc, line);
 	final_set_map(i, &sc.map_line, &sc);
 	close(fd);
 	return (sc);

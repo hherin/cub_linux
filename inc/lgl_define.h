@@ -41,7 +41,6 @@
 ** # define OWNERGRABBUTTONMASK (1L<<24)
 */
 
-
 # define KEYPRESS 2
 # define KEYRELEASE 3
 # define BUTTONPRESS 4
@@ -116,6 +115,6 @@
 # define RIGHT_KEY 65363
 # define LEFT_KEY 65361
 # define TAB_KEY 65289
-# define ESC_KEY 65307 
+# define ESC_KEY 65307
 
 #endif

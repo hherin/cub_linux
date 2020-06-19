@@ -78,6 +78,7 @@ typedef struct		s_txt
 */
 typedef struct		s_win
 {
+	int				boole_quit;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;

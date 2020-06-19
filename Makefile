@@ -24,6 +24,7 @@ LIB	=	./lib
 
 SOURCES	=	parcing/error/check_error.c\
 			parcing/error/quit.c\
+			parcing/error/quit_2.c\
 			parcing/error/error_map.c\
 			parcing/parcing.c\
 			parcing/file_struct.c\

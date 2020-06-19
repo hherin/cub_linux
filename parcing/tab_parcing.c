@@ -46,10 +46,10 @@ char		**tab_parcing(char *line, char **tab, t_scene *sc)
 
 	i = -1;
 	if (!(new_tab = (char**)malloc(sizeof(char*) * (index + 1))))
-		quit_parc("Wrong allocation in the map");
+		quit_parc_after_sc("Wrong allocation in the map", sc, line);
 	while (++i < index)
 		if (!(new_tab[i] = ft_strdup(tab[i])))
-			quit_parc("Wrong allocation in the map");
+			quit_parc_after_sc("Wrong allocation in the map", sc, line);
 	index = i + 1;
 	new_tab[i] = new_element(line, new_tab[i]);
 	i = -1;

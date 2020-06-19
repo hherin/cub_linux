@@ -17,7 +17,8 @@ static char	*ft_getpath(char *line)
 	char	*str;
 
 	line += (*line == 'S' && *(line + 1) != 'O') ? 1 : 2;
-	str = ft_strtrim(line, " 	");
+	if (!(str = ft_strtrim(line, " 	")))
+		quit_parc("Something when wrong with path traitment");
 	return (str);
 }
 
@@ -100,6 +101,9 @@ static void	ft_parc_clr(t_scene *sc, char *line)
 
 void		ft_filestruct(t_scene *sc, char *line)
 {
+	char *tmp;
+
+	tmp = line;
 	if (*line == 'R')
 		ft_get_resol(sc, line);
 	else if (*line == 'F')
@@ -120,4 +124,5 @@ void		ft_filestruct(t_scene *sc, char *line)
 		sc->b_sp.path = ft_getpath(line);
 	else
 		quit_parc("wrong configuration (file struct)");
+	line = tmp;
 }

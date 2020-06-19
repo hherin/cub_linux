@@ -14,6 +14,7 @@
 
 void	init_cub(t_scene *sc, t_win *win, t_int_tup r)
 {
+	sc->win.boole_quit = 0;
 	if ((win->mlx_ptr = mlx_init()) == NULL)
 		quit_prog(sc, "Initialistion of window failed");
 	if (!(win->img_ptr = mlx_new_image(win->mlx_ptr, r.x, r.y)))
@@ -26,13 +27,14 @@ void	init_cub(t_scene *sc, t_win *win, t_int_tup r)
 
 void	loop_cub(t_win *win, t_int_tup r, t_scene *sc)
 {
+	sc->win.boole_quit = 1;
 	win->win_ptr = mlx_new_window(win->mlx_ptr, r.x, r.y, "GO BACK TO WORK");
 	if (win->win_ptr == NULL)
 		quit_prog(sc, "Window creation failed");
 	final_print(sc);
-	mlx_hook(win->win_ptr, KEYPRESS, (1L<<0), &key_press, sc);
-	mlx_hook(win->win_ptr, KEYRELEASE, (1L<<1), &key_release, sc);
-	mlx_hook(win->win_ptr, 33, (1L<<17), &quit_window, sc);
+	mlx_hook(win->win_ptr, KEYPRESS, (1L << 0), &key_press, sc);
+	mlx_hook(win->win_ptr, KEYRELEASE, (1L << 1), &key_release, sc);
+	mlx_hook(win->win_ptr, 33, (1L << 17), &quit_window, sc);
 	mlx_loop_hook(win->mlx_ptr, &final_print, sc);
 }
 
