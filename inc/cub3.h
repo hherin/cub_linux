@@ -44,7 +44,6 @@ void	get_dir(t_player *pl, char c);
 void	init_parcing(t_scene *sc);
 int		is_player(char c);
 int		check_inputs(t_scene sc);
-
 /*
 ** ==================  ERROR  ===================
 */
