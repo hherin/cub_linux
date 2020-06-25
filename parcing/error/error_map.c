@@ -19,7 +19,8 @@ static char			**init_map(char **w_map, int map_l)
 	int				size;
 
 	i = 0;
-	nw_map = malloc(sizeof(char*) * (map_l + 2));
+	if (!(nw_map = malloc(sizeof(char*) * (map_l + 2))))
+		quit_parc("error malloc check map.");
 	while (i < map_l + 2)
 	{
 		if (i == 0)
@@ -36,7 +37,7 @@ static char			**init_map(char **w_map, int map_l)
 	return (nw_map);
 }
 
-static char			**map_copy(char **w_map, char **dest, int map_l)
+static void			map_copy(char **w_map, char ***dest, int map_l)
 {
 	t_int_tup		src;
 	t_int_tup		dst;
@@ -53,13 +54,12 @@ static char			**map_copy(char **w_map, char **dest, int map_l)
 		while (++src.y < size)
 		{
 			c = w_map[src.x][src.y];
-			dest[dst.x][dst.y] = (is_player(c)) ? '0' : c;
-			dest[dst.x][dst.y] = (ft_isspace(c)) ? '.' : c;
+			(*dest)[dst.x][dst.y] = (is_player(c)) ? '0' : c;
+			(*dest)[dst.x][dst.y] = (ft_isspace(c)) ? '.' : c;
 			dst.y++;
 		}
 		dst.x++;
 	}
-	return (dest);
 }
 
 static t_int_tup	check_map(char **m, int map_l)
@@ -120,11 +120,19 @@ void				error_map(char **w_map, int map_l)
 	char			**new_map;
 	t_int_tup		pl;
 	int				ret;
+	int				i;
 
+	i = 0;
 	new_map = init_map(w_map, map_l);
-	new_map = map_copy(w_map, new_map, map_l);
+	map_copy(w_map, &new_map, map_l);
 	pl = check_map(new_map, map_l);
 	ret = rec_check(&new_map, pl, map_l);
+	while (i < map_l + 2)
+	{
+		free(new_map[i]);
+		i++;
+	}
+	free(new_map);
 	if (!ret)
 		quit_parc("map not closed");
 }

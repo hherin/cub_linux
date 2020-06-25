@@ -1,7 +1,7 @@
-R 200 200
+R 500 500
 
 C	200,0,0
-F	./text2/wood.xpm
+F	1,0,0
 
 S ./text2/pillar.xpm
 T ./text2/barrel.xpm

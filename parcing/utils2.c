@@ -12,19 +12,20 @@
 
 #include "../inc/cub3.h"
 
-static void	nb_sprite(t_scene sc, t_sprite_obj *obj, char **tab)
+static void	nb_sprite(t_scene sc, t_sprite_obj **obj, char **tab)
 {
 	int		j;
 	int		i;
 
 	j = -1;
+	(*obj)->nb_sp = 0;
 	while (++j < sc.map_line)
 	{
 		i = -1;
 		while (++i < (int)ft_strlen(sc.w_map[j]))
 		{
 			if (tab[j][i] == '2' || tab[j][i] == '3')
-				obj->nb_sp++;
+				(*obj)->nb_sp++;
 		}
 	}
 }
@@ -35,8 +36,9 @@ static void	is_sprite(t_sprite_obj *obj, char **tab, t_scene *sc)
 	int		j;
 	int		i;
 
-	nb_sprite(*sc, obj, tab);
-	obj->s = malloc(sizeof(t_sprite) * obj->nb_sp);
+	nb_sprite(*sc, &obj, tab);
+	if (!(obj->s = malloc(sizeof(t_sprite) * obj->nb_sp)))
+		quit_parc("error malloc of sprites.");
 	compt = 0;
 	j = -1;
 	while (++j < sc->map_line)

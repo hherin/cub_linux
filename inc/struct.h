@@ -195,7 +195,6 @@ typedef struct		s_scene
 	t_int_tup		pxl;
 	t_int_tup		pl_sq;
 	int				see;
-	int				life;
 	float			d;
 	int				color;
 	t_ceil			ceil;

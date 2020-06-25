@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *src, const char *to_find, size_t len)
 		if (to_find[i] == '\0')
 			return ((char*)src);
 		src++;
-	       	len--;
+		len--;
 	}
 	return (NULL);
 }

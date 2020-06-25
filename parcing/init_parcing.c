@@ -34,16 +34,12 @@ static void	init_data(t_scene *sc)
 	sc->pl.pos.y = -1.0;
 	sc->ray.cam_x = 0;
 	sc->nb_sprite = 0;
-	sc->life = 10;
 	sc->see = 0;
 }
 
 void		init_parcing(t_scene *sc)
 {
 	sc->w_map = NULL;
-	if (!(sc->s_obj.s = malloc(sizeof(t_sprite))))
-		quit_parc("Wrong allocation in malloc");
-	sc->s_obj.s = NULL;
 	if (!(sc->wall = malloc(sizeof(t_wall))))
 		quit_parc("Wrong allocation in malloc");
 	sc->pl.walk_spd = 0.157;

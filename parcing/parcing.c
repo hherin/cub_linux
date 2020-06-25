@@ -51,6 +51,9 @@ t_scene			rc_parcing(char *av)
 	}
 	(sc.pl.pos.x != -1) ? 0 : quit_parc_after_sc("no player", &sc, line);
 	final_set_map(i, &sc.map_line, &sc);
+	if (!sc.wall_e.txt.path || !sc.wall_w.txt.path || !sc.wall_n.txt.path \
+	|| !sc.wall_s.txt.path || !sc.b_sp.path || !sc.c_sp.path)
+		quit_parc("Missing path in configuration file");
 	close(fd);
 	return (sc);
 }
