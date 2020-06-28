@@ -19,6 +19,8 @@ static char	*ft_getpath(char *line)
 	line += (*line == 'S' && *(line + 1) != 'O') ? 1 : 2;
 	if (!(str = ft_strtrim(line, " 	")))
 		quit_parc("Something when wrong with path traitment");
+	if (check_output(str, ".xpm"))
+		quit_parc("Wrong texture extension");
 	return (str);
 }
 

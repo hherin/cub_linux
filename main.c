@@ -30,21 +30,13 @@ static t_key	init_key(int bole)
 	return (key);
 }
 
-static int		check_output(char *cub)
-{
-	int			i;
-
-	i = ft_strlen(cub) - 4;
-	return (ft_strncmp(cub + i, ".cub", 4));
-}
-
 int				main(int ac, char **av)
 {
 	t_scene		sc;
 
 	if (ac < 2 || ac > 3)
 		quit_parc("No file or too many files");
-	if (check_output(av[1]))
+	if (check_output(av[1], ".cub"))
 		quit_parc("Wrong configuration file.");
 	sc = rc_parcing(av[1]);
 	sc.key = init_key(1);

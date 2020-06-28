@@ -52,3 +52,12 @@ void		pre_check(char *line)
 	if (!ft_isspace(*line))
 		final_check(line, 1);
 }
+
+int		check_output(char *cub, char *extension)
+{
+	int			i;
+
+	i = ft_strlen(cub) - 4;
+	return (ft_strncmp(cub + i, extension, 4));
+}
+

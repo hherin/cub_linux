@@ -48,6 +48,7 @@ int		check_inputs(t_scene sc);
 ** ==================  ERROR  ===================
 */
 void	free_win(t_scene *sc);
+int		check_output(char *cub, char *extension);
 void	quit_parc(char *str);
 void	quit_parc_after_sc(char *str, t_scene *sc, char *line);
 void	error_map(char **w_map, int map_line);
