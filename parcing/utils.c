@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:10:37 by hherin            #+#    #+#             */
-/*   Updated: 2020/04/08 15:11:34 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/01 17:21:01 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ int		check_inputs(t_scene sc)
 	if (sc.ceil.clr < 0 && !sc.ceil.txt.path)
 		return (0);
 	if (!sc.c_sp.path)
+		return (0);
+	if (!sc.wall_e.txt.path)
+		return (0);
+	if (!sc.wall_w.txt.path)
+		return (0);
+	if (!sc.wall_n.txt.path)
+		return (0);
+	if (!sc.wall_s.txt.path)
+		return (0);
+	if (!sc.b_sp.path)
 		return (0);
 	return (1);
 }

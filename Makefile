@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hherin <hherin@student.42.fr>              +#+  +:+       +#+         #
+#    By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/05 20:38:20 by hherin            #+#    #+#              #
-#    Updated: 2020/06/10 14:59:27 by hherin           ###   ########.fr        #
+#    Updated: 2020/07/01 17:24:42 by heleneherin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ ${DIR_O}/%.o: ${DIR_S}/%.c
 ${NAME} : ${OBJ}
 	@make -C ${LIB}
 	@make -C ./inc/mlx
-	${CC} -o $@ ${INC} ${OBJ} ./lib/libftprintf.a ./inc/mlx/libmlx_Linux.a ${CFLAGS} ${MLX_FLAG} 
+	${CC} -o $@ ${INC} ${OBJ} ./lib/libftprintf.a ./inc/mlx/libmlx_linux.a ${CFLAGS} ${MLX_FLAG}
 
 clean:
 	${RM} ${DIR_O}

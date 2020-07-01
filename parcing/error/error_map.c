@@ -6,12 +6,12 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:33:44 by hherin            #+#    #+#             */
-/*   Updated: 2020/04/08 14:06:22 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/01 17:25:50 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3.h"
-#include<stdio.h> //SUPPPPPPPPPPPPPPPPP
+
 static char			**init_map(char **w_map, int map_l)
 {
 	char			**nw_map;
@@ -75,7 +75,6 @@ static t_int_tup	check_map(char **m, int map_l)
 	while (++i < map_l + 2)
 	{
 		size = (int)ft_strlen(m[i]);
-		printf("strlen %d | %s\n", size, m[i]);
 		j = 0;
 		while (++j < size)
 		{
@@ -109,11 +108,8 @@ int					rec_check(char ***m, t_int_tup pos, int map_l)
 		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
 		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
 		(i > 1) ? i++ : i--;
-		printf("i = %d / j = %d\n", i, j);
-		printf("LALA %c\n", (*m)[i][j]);
 	}
 	pos = check_map(*m, map_l);
-	printf("x = %d | y = %d\n", pos.x, pos.y);
 	if (pos.x != -1)
 		rec_check(m, pos, map_l);
 	return (1);
@@ -130,11 +126,9 @@ void				error_map(char **w_map, int map_l)
 	new_map = init_map(w_map, map_l);
 	map_copy(w_map, &new_map, map_l);
 	pl = check_map(new_map, map_l);
-	printf("x = %d y= %d\n", pl.x, pl.y);
 	ret = rec_check(&new_map, pl, map_l);
 	while (i < map_l + 2)
 	{
-		printf("%s\n", new_map[i]);
 		free(new_map[i]);
 		i++;
 	}
