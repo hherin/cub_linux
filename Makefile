@@ -70,7 +70,7 @@ ${DIR_O}/%.o: ${DIR_S}/%.c
 ${NAME} : ${OBJ}
 	@make -C ${LIB}
 	@make -C ./inc/mlx
-	${CC} -o $@ ${INC} ${OBJ} ./lib/libftprintf.a ./inc/mlx/libmlx_linux.a ${CFLAGS} ${MLX_FLAG}
+	${CC} -o $@ ${INC} ${OBJ} ./lib/libftprintf.a ./inc/mlx/libmlx_Linux.a ${CFLAGS} ${MLX_FLAG}
 
 clean:
 	${RM} ${DIR_O}

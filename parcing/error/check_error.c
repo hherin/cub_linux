@@ -53,11 +53,10 @@ void		pre_check(char *line)
 		final_check(line, 1);
 }
 
-int		check_output(char *cub, char *extension)
+int			check_output(char *cub, char *extension)
 {
-	int			i;
+	int		i;
 
 	i = ft_strlen(cub) - 4;
 	return (ft_strncmp(cub + i, extension, 4));
 }
-
