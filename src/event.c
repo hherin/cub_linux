@@ -23,9 +23,9 @@ static void	player_move(t_scene *sc)
 	sc->see = (sc->key.up == 1) ? 1 : 0;
 }
 
-static void	deal_key(int keyhook, t_key *key, int var)
+static void	deal_key(int keyhook, t_key *key, int var, t_scene *sc)
 {
-	(keyhook == ESC_KEY) ? exit(0) : 0;
+	(keyhook == ESC_KEY) ? quit_window(sc) : 0;
 	(keyhook == W_KEY) ? key->forw = var : 0;
 	(keyhook == A_KEY) ? key->left = var : 0;
 	(keyhook == S_KEY) ? key->back = var : 0;
@@ -51,14 +51,14 @@ static void	deal_key(int keyhook, t_key *key, int var)
 
 int			key_press(int keyhook, t_scene *sc)
 {
-	deal_key(keyhook, &sc->key, 1);
+	deal_key(keyhook, &sc->key, 1, sc);
 	player_move(sc);
 	return (1);
 }
 
 int			key_release(int keyhook, t_scene *sc)
 {
-	deal_key(keyhook, &sc->key, 0);
+	deal_key(keyhook, &sc->key, 0, sc);
 	player_move(sc);
 	return (1);
 }

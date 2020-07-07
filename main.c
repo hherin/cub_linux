@@ -38,7 +38,9 @@ int				main(int ac, char **av)
 		quit_parc("No file or too many files");
 	if (check_output(av[1], ".cub"))
 		quit_parc("Wrong configuration file.");
-	sc = rc_parcing(av[1]);
+	if ((sc.win.mlx_ptr = mlx_init()) == NULL)
+		quit_prog(&sc, "Initialisation of window failed");
+	rc_parcing(av[1], &sc);
 	sc.key = init_key(1);
 	init_cub(&sc, &sc.win, sc.r);
 	if (ac == 3)

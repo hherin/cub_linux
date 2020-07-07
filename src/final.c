@@ -19,7 +19,6 @@ int	final_print(t_scene *sc)
 	print_minimap(sc);
 	mlx_put_image_to_window(sc->win.mlx_ptr, sc->win.win_ptr, \
 							sc->win.img_ptr, 0, 0);
-	mlx_string_put(sc->win.mlx_ptr, sc->win.win_ptr, sc->r.x / 2, \
-					sc->r.y / 2, 20991844, "X");
+	mlx_do_sync(sc->win.mlx_ptr);
 	return (1);
 }

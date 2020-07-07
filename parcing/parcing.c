@@ -31,29 +31,27 @@ static void		set_struct(t_scene *sc, char *line, int *i)
 	free(line);
 }
 
-t_scene			rc_parcing(char *av)
+void			rc_parcing(char *av, t_scene *sc)
 {
 	int			fd;
 	char		*line;
 	int			i;
-	t_scene		sc;
 	int			ret;
 
 	i = 0;
 	if ((fd = open(av, O_RDONLY)) < 0)
 		quit_parc("Can't open the file");
-	init_parcing(&sc);
+	init_parcing(sc);
 	while ((ret = get_next_line(fd, &line)) >= 0)
 	{
-		set_struct(&sc, line, &i);
+		set_struct(sc, line, &i);
 		if (ret == 0)
 			break ;
 	}
-	(sc.pl.pos.x != -1) ? 0 : quit_parc_after_sc("no player", &sc, line);
-	final_set_map(i, &sc.map_line, &sc);
-	if (!sc.wall_e.txt.path || !sc.wall_w.txt.path || !sc.wall_n.txt.path \
-	|| !sc.wall_s.txt.path || !sc.b_sp.path || !sc.c_sp.path)
+	(sc->pl.pos.x != -1) ? 0 : quit_parc_after_sc("no player", sc, line);
+	final_set_map(i, &sc->map_line, sc);
+	if (!sc->wall_e.txt.path || !sc->wall_w.txt.path || !sc->wall_n.txt.path \
+	|| !sc->wall_s.txt.path || !sc->b_sp.path || !sc->c_sp.path)
 		quit_parc("Missing path in configuration file");
 	close(fd);
-	return (sc);
 }

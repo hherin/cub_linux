@@ -38,7 +38,7 @@ static void	final_check(char *line, int boole)
 	else
 		err_bool = 0;
 	if (!err_bool)
-		quit_parc("configuration elements");
+		quit_parc("Wrong configuration elements");
 }
 
 void		pre_check(char *line)

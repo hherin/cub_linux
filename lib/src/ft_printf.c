@@ -48,6 +48,7 @@ int				ft_printf(const char *format, ...)
 	int			ret;
 	char		*str;
 
+	ret = 0;
 	va_start(ap, format);
 	str = (char*)format;
 	tab = ft_struct_printf();

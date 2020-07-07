@@ -26,6 +26,8 @@ static void	init_path(t_scene *sc)
 
 static void	init_data(t_scene *sc)
 {
+	sc->limit.x = 0;
+	sc->limit.y = 0;
 	sc->r.x = -1;
 	sc->r.y = -1;
 	sc->ceil.clr = -1;
@@ -40,8 +42,6 @@ static void	init_data(t_scene *sc)
 void		init_parcing(t_scene *sc)
 {
 	sc->w_map = NULL;
-	if (!(sc->wall = malloc(sizeof(t_wall))))
-		quit_parc("Wrong allocation in malloc");
 	sc->pl.walk_spd = 0.157;
 	init_path(sc);
 	init_data(sc);

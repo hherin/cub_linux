@@ -35,7 +35,7 @@
 /*
 ** ================  PARCING  =================
 */
-t_scene	rc_parcing();
+void	rc_parcing(char *av, t_scene *sc);
 char	**tab_parcing(char *line, char **tab, t_scene *sc);
 void	ft_filestruct(t_scene *sc, char *line);
 void	switch_maps(char ***tab, int i, char *line, t_scene *sc);

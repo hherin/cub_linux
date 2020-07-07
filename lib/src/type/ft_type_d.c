@@ -98,8 +98,10 @@ int			ft_type_d(va_list ap, t_option opt)
 	int		nb;
 	int		lenght;
 
+	s = NULL;
+	nb = 0;
 	nb = va_arg(ap, int);
-	if (!(s = ft_itoa(nb)))
+	if ((s = ft_itoa(nb)) && s == 0)
 		return (0);
 	if (!(str = ft_optschoose(opt, s, nb)))
 		return (-1);

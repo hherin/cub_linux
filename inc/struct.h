@@ -191,6 +191,7 @@ typedef struct		s_ceil
 */
 typedef struct		s_scene
 {
+	t_int_tup		limit;
 	t_int_tup		r;
 	t_int_tup		pxl;
 	t_int_tup		pl_sq;

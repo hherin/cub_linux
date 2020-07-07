@@ -55,7 +55,7 @@ HEAD	=	./inc/
 
 INC		=	-I ${HEAD} -I ./inc/mlx
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -O3 
 
 MLX_FLAG =	-lm -lbsd -lX11 -lXext
 

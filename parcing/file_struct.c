@@ -32,17 +32,19 @@ static int	ft_getclr(char *line)
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong input color");
 	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
 		quit_parc("Wrong red color");
-	(*line == ',' && ft_isdigit(*(line + 1))) ? line++ :
-					quit_parc("Wrong color separator");
-	nb = interm;
+	while (*line == ',' || ft_isspace(*line))
+		line++;
+	(!ft_isdigit(*line)) ? quit_parc("Wrong color separator") : 0;
+	nb = interm * 65536;
 	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
 		quit_parc("green color");
-	(*line == ',' && ft_isdigit(*(line + 1))) ? line++ :
-					quit_parc("Wrong color separator");
-	nb = nb * pow(10, nb_size(interm)) + interm;
+	while (*line == ',' || ft_isspace(*line))
+		line++;
+	(!ft_isdigit(*line)) ? quit_parc("Wrong color separator") : 0;
+	nb = nb + (interm * 256);
 	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
 		quit_parc("Wrong blue color");
-	nb = nb * pow(10, nb_size(interm)) + interm;
+	nb = nb + interm;
 	while (ft_isspace(*line))
 		line++;
 	if (*line)
@@ -50,23 +52,21 @@ static int	ft_getclr(char *line)
 	return (nb);
 }
 
-static void	ft_get_resol(t_scene *scene, char *line)
+static void	ft_get_resol(t_scene *sc, char *line)
 {
-	scene->r.x = -1;
-	scene->r.y = -1;
+	mlx_get_screen_size(sc->win.mlx_ptr, &sc->limit.x, &sc->limit.y);
+	sc->r.x = -1;
+	sc->r.y = -1;
 	while (*line == 'R' || *line == ' ' || *line == '\t')
 		line++;
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong first input in resolution");
-	scene->r.x = ft_atoi_trim(&line);
+	sc->r.x = ft_atoi_trim(&line);
 	while (*line > 0 && *line < 33)
 		line++;
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong second input in resolution");
-	scene->r.y = ft_atoi_trim(&line);
-	if (scene->r.x > 2560 && scene->r.y > 1440)
-	{
-		scene->r.x = 2560;
-		scene->r.y = 1440;
-	}
+	sc->r.y = ft_atoi_trim(&line);
+	(sc->r.x > sc->limit.x) ? sc->r.x = sc->limit.x : 0;
+	(sc->r.y > sc->limit.y) ? sc->r.y = sc->limit.y : 0;
 	while (ft_isspace(*line))
 		line++;
 	if (*line)

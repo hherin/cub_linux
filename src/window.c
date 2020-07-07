@@ -15,8 +15,6 @@
 void	init_cub(t_scene *sc, t_win *win, t_int_tup r)
 {
 	sc->win.boole_quit = 0;
-	if ((win->mlx_ptr = mlx_init()) == NULL)
-		quit_prog(sc, "Initialistion of window failed");
 	if (!(win->img_ptr = mlx_new_image(win->mlx_ptr, r.x, r.y)))
 		quit_prog(sc, "No image of window created");
 	if (!(win->addr_ar = mlx_get_data_addr(win->img_ptr, &win->bit_pixel, \
