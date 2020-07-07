@@ -18,11 +18,9 @@ void	free_path(t_scene *sc)
 	(sc->floor.txt.path) ? free(sc->floor.txt.path) : 0;
 	(sc->wall_e.txt.path) ? free(sc->wall_e.txt.path) : 0;
 	(sc->wall_s.txt.path) ? free(sc->wall_s.txt.path) : 0;
-	(sc->wall_n.txt.path) ? free(sc->wall_n.txt.path) : 0;
 	(sc->wall_w.txt.path) ? free(sc->wall_w.txt.path) : 0;
 	(sc->c_sp.path) ? free(sc->c_sp.path) : 0;
 	(sc->b_sp.path) ? free(sc->b_sp.path) : 0;
-	(sc->wall) ? free(sc->wall) : 0;
 }
 
 void	free_win(t_scene *sc)
