@@ -110,23 +110,23 @@ void		ft_filestruct(t_scene *sc, char *line)
 	char *tmp;
 
 	tmp = line;
-	if (*line == 'R')
+	if (*line == 'R' && sc->r.x == -1)
 		ft_get_resol(sc, line);
-	else if (*line == 'F')
+	else if (*line == 'F' && (!sc->floor.txt.path && sc->floor.clr == -1))
 		ft_parc_clr(sc, line);
-	else if (*line == 'C')
+	else if (*line == 'C' && (!sc->ceil.txt.path && sc->ceil.clr == -1))
 		ft_parc_clr(sc, line);
-	else if (*line == 'N' && *(line + 1) == 'O')
+	else if (*line == 'N' && *(line + 1) == 'O' && !sc->wall_n.txt.path)
 		sc->wall_n.txt.path = ft_getpath(line);
-	else if (*line == 'S' && *(line + 1) == 'O')
+	else if (*line == 'S' && *(line + 1) == 'O' && !sc->wall_s.txt.path)
 		sc->wall_s.txt.path = ft_getpath(line);
-	else if (*line == 'W' && *(line + 1) == 'E')
+	else if (*line == 'W' && *(line + 1) == 'E' && !sc->wall_w.txt.path)
 		sc->wall_w.txt.path = ft_getpath(line);
-	else if (*line == 'E' && *(line + 1) == 'A')
+	else if (*line == 'E' && *(line + 1) == 'A' && !sc->wall_e.txt.path)
 		sc->wall_e.txt.path = ft_getpath(line);
-	else if (*line == 'S' && ft_isspace(*(line + 1)))
+	else if (*line == 'S' && ft_isspace(*(line + 1)) && !sc->c_sp.path)
 		sc->c_sp.path = ft_getpath(line);
-	else if (*line == 'T' && ft_isspace(*(line + 1)))
+	else if (*line == 'T' && ft_isspace(*(line + 1)) && !sc->b_sp.path)
 		sc->b_sp.path = ft_getpath(line);
 	else
 		quit_parc("wrong configuration (file struct)");
