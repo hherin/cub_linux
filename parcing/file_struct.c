@@ -60,13 +60,17 @@ static void	ft_get_resol(t_scene *sc, char *line)
 	while (*line == 'R' || *line == ' ' || *line == '\t')
 		line++;
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong first input in resolution");
-	sc->r.x = ft_atoi_trim(&line);
+	if (!(sc->r.x = ft_atoi_trim(&line)))
+		quit_parc("X resolution is invalid");
 	while (*line > 0 && *line < 33)
 		line++;
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong second input in resolution");
-	sc->r.y = ft_atoi_trim(&line);
+	if (!(sc->r.y = ft_atoi_trim(&line)))
+		quit_parc("Y resolution is invalid");
 	(sc->r.x > sc->limit.x) ? sc->r.x = sc->limit.x : 0;
 	(sc->r.y > sc->limit.y) ? sc->r.y = sc->limit.y : 0;
+	(sc->r.x % 2) ? sc->r.x++ : 0;
+	(sc->r.y % 2) ? sc->r.y++ : 0;
 	while (ft_isspace(*line))
 		line++;
 	if (*line)

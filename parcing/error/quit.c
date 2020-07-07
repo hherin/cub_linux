@@ -11,14 +11,17 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3.h"
-
+#include <stdio.h>
 void	quit_prog(t_scene *sc, char *str)
 {
 	if (sc->w_map)
 		free_tab(&sc->w_map, *sc);
 	ft_printf("Error\n%s\n", str);
+	printf("1\n");
 	free_win(sc);
+	printf("2\n");
 	free_path(sc);
+	printf("3\n");
 	exit(EXIT_FAILURE);
 }
 
