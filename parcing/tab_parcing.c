@@ -52,6 +52,7 @@ char		**tab_parcing(char *line, char **tab, t_scene *sc)
 			quit_parc_after_sc("Wrong allocation in the map", sc, line);
 	index = i + 1;
 	new_tab[i] = new_element(line, new_tab[i]);
+	((int)ft_strlen(new_tab[i]) > sc->max_map) ? sc->max_map = ft_strlen(new_tab[i]) : 0;
 	i = -1;
 	while (++i < (int)ft_strlen(line))
 	{

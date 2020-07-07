@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3.h"
-#include <stdio.h>
 
 static void	apload_txt(t_scene *sc, t_txt *smt)
 {

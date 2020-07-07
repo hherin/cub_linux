@@ -12,26 +12,19 @@
 
 #include "../../inc/cub3.h"
 
-static char			**init_map(char **w_map, int map_l)
+static char			**init_map(int map_l, int max_map)
 {
 	char			**nw_map;
 	int				i;
-	int				size;
 
 	i = 0;
 	if (!(nw_map = malloc(sizeof(char*) * (map_l + 2))))
 		quit_parc("error malloc check map.");
 	while (i < map_l + 2)
 	{
-		if (i == 0)
-			size = (int)ft_strlen(w_map[0]) + 3;
-		else if (i < map_l + 1)
-			size = (int)ft_strlen(w_map[i - 1]) + 3;
-		else
-			size = (int)ft_strlen(w_map[i - 2]) + 3;
-		nw_map[i] = malloc(sizeof(char) * size);
-		nw_map[i][size - 1] = '\0';
-		nw_map[i] = ft_memset(nw_map[i], '.', size - 1);
+		nw_map[i] = malloc(sizeof(char) * max_map);
+		nw_map[i][max_map - 1] = '\0';
+		nw_map[i] = ft_memset(nw_map[i], '.', max_map - 1);
 		i++;
 	}
 	return (nw_map);
@@ -96,18 +89,22 @@ int					rec_check(char ***m, t_int_tup pos, int map_l)
 
 	i = pos.y;
 	j = pos.x;
+	while (j > 0 && (*m)[i][j - 1] == '0')
+		j--;
 	while (j < (int)ft_strlen((*m)[i]) && (*m)[i][j] != '1')
 	{
 		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
 		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
-		(j > 1) ? j++ : j--;
+		j++;
 	}
 	j = pos.x;
-	while (i < map_l + 2 && (*m)[i][j] != '1')
+	while (i > 0 && ((*m)[i -1][j] == '0'))
+		i--;
+	while (i < map_l + 3 && (*m)[i][j] != '1')
 	{
 		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
 		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
-		(i > 1) ? i++ : i--;
+		i++;
 	}
 	pos = check_map(*m, map_l);
 	if (pos.x != -1)
@@ -115,7 +112,7 @@ int					rec_check(char ***m, t_int_tup pos, int map_l)
 	return (1);
 }
 
-void				error_map(char **w_map, int map_l)
+void				error_map(char **w_map, int map_l, int max_map)
 {
 	char			**new_map;
 	t_int_tup		pl;
@@ -123,7 +120,7 @@ void				error_map(char **w_map, int map_l)
 	int				i;
 
 	i = 0;
-	new_map = init_map(w_map, map_l);
+	new_map = init_map(map_l, max_map + 3);
 	map_copy(w_map, &new_map, map_l);
 	pl = check_map(new_map, map_l);
 	ret = rec_check(&new_map, pl, map_l);

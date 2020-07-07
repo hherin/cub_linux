@@ -18,7 +18,6 @@ void	quit_prog(t_scene *sc, char *str)
 		free_tab(&sc->w_map, *sc);
 	ft_printf("Error\n%s\n", str);
 	free_win(sc);
-	free_path(sc);
 	exit(EXIT_FAILURE);
 }
 

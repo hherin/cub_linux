@@ -26,6 +26,7 @@ static void	init_path(t_scene *sc)
 
 static void	init_data(t_scene *sc)
 {
+	sc->max_map = 0;
 	sc->limit.x = 0;
 	sc->limit.y = 0;
 	sc->r.x = -1;

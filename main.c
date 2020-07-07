@@ -29,7 +29,7 @@ static t_key	init_key(int bole)
 	key.f_disp = bole;
 	return (key);
 }
-#include <stdio.h>
+
 int				main(int ac, char **av)
 {
 	t_scene		sc;
@@ -40,13 +40,9 @@ int				main(int ac, char **av)
 		quit_parc("Wrong configuration file.");
 	if ((sc.win.mlx_ptr = mlx_init()) == NULL)
 		quit_prog(&sc, "Initialisation of window failed");
-	// printf("1\n");
 	rc_parcing(av[1], &sc);
-	// printf("2\n");
 	sc.key = init_key(1);
-	// printf("3\n");
 	init_cub(&sc, &sc.win, sc.r);
-	// printf("4\n");
 	if (ac == 3)
 	{
 		if (!ft_strncmp(av[2], "--save", 10))
@@ -54,9 +50,7 @@ int				main(int ac, char **av)
 		else
 			quit_prog(&sc, "Wrong 2nd argument");
 	}
-	// printf("5\n");
 	loop_cub(&sc.win, sc.r, &sc);
-	// printf("6\n");
 	mlx_loop(sc.win.mlx_ptr);
 	return (1);
 }

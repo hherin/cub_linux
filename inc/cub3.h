@@ -12,7 +12,7 @@
 
 #ifndef CUB3_H
 # define CUB3_H
-
+                                #include <stdio.h>
 # include "struct.h"
 # include "lgl_define.h"
 # include "mlx/mlx.h"
@@ -51,7 +51,7 @@ void	free_win(t_scene *sc);
 int		check_output(char *cub, char *extension);
 void	quit_parc(char *str);
 void	quit_parc_after_sc(char *str, t_scene *sc, char *line);
-void	error_map(char **w_map, int map_line);
+void	error_map(char **w_map, int map_line, int max_map);
 void	pre_check(char *line);
 void	quit_prog(t_scene *sc, char *str);
 void	free_path(t_scene *sc);

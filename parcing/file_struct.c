@@ -32,19 +32,22 @@ static int	ft_getclr(char *line)
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong input color");
 	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
 		quit_parc("Wrong red color");
-	while (*line == ',' || ft_isspace(*line))
+	(*line == ',') ? line++ : 0;
+	while (ft_isspace(*line))
 		line++;
 	(!ft_isdigit(*line)) ? quit_parc("Wrong color separator") : 0;
 	nb = interm * 65536;
 	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
 		quit_parc("green color");
-	while (*line == ',' || ft_isspace(*line))
+	(*line == ',') ? line++ : 0;
+	while (ft_isspace(*line))
 		line++;
 	(!ft_isdigit(*line)) ? quit_parc("Wrong color separator") : 0;
 	nb = nb + (interm * 256);
 	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
 		quit_parc("Wrong blue color");
 	nb = nb + interm;
+	(*line == ',') ? line++ : 0;
 	while (ft_isspace(*line))
 		line++;
 	if (*line)

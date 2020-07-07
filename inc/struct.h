@@ -202,6 +202,7 @@ typedef struct		s_scene
 	t_floor			floor;
 	t_key			key;
 	int				map_line;
+	int				max_map;
 	t_sprite_obj	s_obj;
 	t_txt			b_sp;
 	t_txt			c_sp;

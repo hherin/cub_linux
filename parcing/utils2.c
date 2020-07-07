@@ -63,5 +63,5 @@ void		final_set_map(int line, int *map_line, t_scene *sc)
 	i = -1;
 	*map_line = line;
 	is_sprite(&sc->s_obj, sc->w_map, sc);
-	error_map(sc->w_map, *map_line);
+	error_map(sc->w_map, *map_line, sc->max_map);
 }

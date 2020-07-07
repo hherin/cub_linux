@@ -70,7 +70,7 @@ static void	wall_computation(t_wall *wall, t_scene sc, int line_hei, int start)
 	wall->step = 1.0 * wall->txt.hei / line_hei;
 	wall->posx_txt = (start - sc.r.y / 2 + line_hei / 2) * wall->step;
 }
-#include <stdio.h>
+
 static void	compute_clr(t_ray ray, t_scene *sc, int x, t_wall *wall)
 {
 	int		y;
@@ -85,22 +85,14 @@ static void	compute_clr(t_ray ray, t_scene *sc, int x, t_wall *wall)
 	(end >= sc->r.y) ? end = sc->r.y - 1 : 0;
 	y = start;
 	wall_computation(wall, *sc, line_hei, start);
-	// printf("y %d end %d\n", y, end);
-	// printf("linehei %d\n", line_hei);
 	while (y < end)
 	{
-		// s(1, "1\n", 2);
 		sc->wall->text.y = (y * 2 - sc->r.y + line_hei) * \
 		(sc->wall->txt.hei / 2) / line_hei;
-		// s(1, "2\n", 2);
 		sc->wall->posx_txt += sc->wall->step;
-		// s(1, "3\n", 2);
-		// printf("%d/tot %d | txtwid %d | texty %d | textx %d\n",y,sc->wall->txt.wid * sc->wall->text.y + sc->wall->text.x, sc->wall->txt.wid, sc->wall->text.y, sc->wall->text.x);
 		sc->color = (int)ft_get_color(sc->wall->txt.addr_ar, \
 		sc->wall->txt.wid * sc->wall->text.y + sc->wall->text.x);
-		// s(1, "4\n", 2);
 		ft_put_pixel(&sc->win.addr_ar, x, y, *sc);
-		// s(1, "5\n", 2);
 		y++;
 	}
 }
@@ -111,18 +103,13 @@ int			raycasting(t_scene *sc)
 	float	z_buf[sc->r.x];
 
 	x = 0;
-	// writess(1, "ICI\n", 4);
 	if (sc->key.f_disp)
 	{
 		while (x < sc->r.x)
 		{
-			// write(1, "1\n", 2);
 			init_ray(&sc->ray, sc->pl, x, sc->r);
-			// write(1, "2\n", 2);
 			dda_cast(&sc->ray, sc->pl, sc->w_map, sc);
-			// write(1, "3\n", 2);
 			compute_clr(sc->ray, sc, x, sc->wall);
-			// write(1, "4\n", 2);
 			z_buf[x] = sc->ray.perp_wall;
 			x++;
 		}
