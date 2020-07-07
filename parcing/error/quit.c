@@ -14,7 +14,7 @@
 
 void	quit_prog(t_scene *sc, char *str)
 {
-	if (sc->w_map)s
+	if (sc->w_map)
 		free_tab(&sc->w_map, *sc);
 	ft_printf("Error\n%s\n", str);
 	free_win(sc);
