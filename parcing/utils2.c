@@ -62,8 +62,6 @@ void		final_set_map(int line, int *map_line, t_scene *sc)
 
 	i = -1;
 	*map_line = line;
-	while (++i < *map_line)
-		ft_printf("[%d] %s\n", i, sc->w_map[i]);
 	is_sprite(&sc->s_obj, sc->w_map, sc);
 	error_map(sc->w_map, *map_line);
 }
