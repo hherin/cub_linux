@@ -26,6 +26,7 @@ SOURCES	=	parcing/error/check_error.c\
 			parcing/error/quit.c\
 			parcing/error/quit_2.c\
 			parcing/error/error_map.c\
+			parcing/error/err_map_utils.c\
 			parcing/parcing.c\
 			parcing/file_struct.c\
 			parcing/tab_parcing.c\
@@ -55,7 +56,7 @@ HEAD	=	./inc/
 
 INC		=	-I ${HEAD} -I ./inc/mlx
 
-CFLAGS	=	-Wall -Wextra -Werror -O3
+CFLAGS	=	-Wall -Wextra -Werror -O3 -g3 -fsanitize=address
 
 MLX_FLAG =	-lm -lbsd -lX11 -lXext
 

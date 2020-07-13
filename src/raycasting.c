@@ -92,7 +92,7 @@ static void	compute_clr(t_ray ray, t_scene *sc, int x, t_wall *wall)
 		sc->wall->posx_txt += sc->wall->step;
 		sc->color = (int)ft_get_color(sc->wall->txt.addr_ar, \
 		sc->wall->txt.wid * sc->wall->text.y + sc->wall->text.x);
-		ft_put_pixel(&sc->win.addr_ar, x, y, *sc);
+		ft_put_pixel(&sc->win.addr_ar, x, y + 1, *sc);
 		y++;
 	}
 }

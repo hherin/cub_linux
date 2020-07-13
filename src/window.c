@@ -29,7 +29,6 @@ void	loop_cub(t_win *win, t_int_tup r, t_scene *sc)
 	win->win_ptr = mlx_new_window(win->mlx_ptr, r.x, r.y, "GO BACK TO WORK");
 	if (win->win_ptr == NULL)
 		quit_prog(sc, "Window creation failed");
-	final_print(sc);
 	mlx_hook(win->win_ptr, KEYPRESS, (1L << 0), &key_press, sc);
 	mlx_hook(win->win_ptr, KEYRELEASE, (1L << 1), &key_release, sc);
 	mlx_hook(win->win_ptr, 33, (1L << 17), &quit_window, sc);

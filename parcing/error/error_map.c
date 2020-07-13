@@ -94,26 +94,11 @@ int					rec_check(char ***m, t_int_tup pos, int map_l)
 	i = pos.y;
 	j = pos.x;
 	while (j > 0 && (*m)[i][j - 1] != '1')
-			j--;
-	while (j < (int)ft_strlen((*m)[i]) && (*m)[i][j] != '1')
-	{
-		(j > 0 && (*m)[i][j - 1] == '.') ? quit_parc("map not closed") : 0;
-		((*m)[i - 1][j] == '.' || (*m)[i + 1][j] == '.') ? quit_parc("map not closed") : 0;
-		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
-		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
-		j++;
-	}
-	j = pos.x;
+		j--;
+	check_jclosed_map(i, j, m);
 	while (i > 0 && ((*m)[i - 1][j] != '1'))
-			i--;
-	while (i < map_l + 3 && (*m)[i][j] != '1')
-	{
-		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
-		((*m)[i][j - 1] == '.' || (*m)[i][j + 1] == '.') ? quit_parc("map not closed") : 0;
-		(i > 0 && (*m)[i - 1][j] == '.') ? quit_parc("map not closed") : 0;
-		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
-		i++;
-	}
+		i--;
+	check_iclosed_map(i, j, m, map_l);
 	pos = check_map(*m, map_l);
 	if (pos.x != -1)
 		rec_check(m, pos, map_l);

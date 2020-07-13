@@ -66,10 +66,10 @@ void		ceil_and_floor(t_scene *sc, t_floor fl, t_ceil ce)
 				(fl.clr < 0 || ce.clr < 0) ? text_comp(&fl, &ce) : 0;
 				sc->color = (fl.clr == -1) ? \
 				((int*)fl.txt.addr_ar)[fl.txt.wid * fl.t.y + fl.t.x] : fl.clr;
-				ft_put_pixel(&sc->win.addr_ar, x, y, *sc);
+				ft_put_pixel(&sc->win.addr_ar, -x, y, *sc);
 				sc->color = (ce.clr == -1) ? \
 				((int*)ce.txt.addr_ar)[ce.txt.wid * ce.t.y + ce.t.x] : ce.clr;
-				ft_put_pixel(&sc->win.addr_ar, x, sc->r.y - y - 1, *sc);
+				ft_put_pixel(&sc->win.addr_ar, -x, sc->r.y - y - 1, *sc);
 			}
 		}
 	}

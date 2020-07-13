@@ -37,7 +37,7 @@ static void	mini_pl(int color, t_scene *sc)
 		while (mini.cur.x < mini.max.x)
 		{
 			sc->color = color;
-			ft_put_pixel(&sc->win.addr_ar, mini.cur.x, mini.cur.y, *sc);
+			ft_put_pixel(&sc->win.addr_ar, -mini.cur.x, mini.cur.y, *sc);
 			mini.cur.x++;
 		}
 		mini.cur.y++;
@@ -54,10 +54,12 @@ void		print_minimap(t_scene *sc)
 	if ((y = -1) == -1 && sc->key.f_disp)
 	{
 		sc->key.f_disp = 0;
-		while (++y < sc->map_line * sc->pxl.y)
+
+		while (++y < sc->map_line * sc->pxl.y && sc->map_line * sc->pxl.y < sc->r.y)
 		{
 			x = -1;
-			while (++x < (int)ft_strlen(sc->w_map[y / sc->pxl.y]) * sc->pxl.x)
+			while (++x < (int)ft_strlen(sc->w_map[y / sc->pxl.y]) * sc->pxl.x && \
+				sc->r.x > (int)ft_strlen(sc->w_map[y / sc->pxl.y]) * sc->pxl.x)
 			{
 				if (sc->w_map[y / sc->pxl.y][x / sc->pxl.x] == '0')
 					sc->color = 12632256;

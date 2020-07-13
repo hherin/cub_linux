@@ -52,6 +52,8 @@ int		check_output(char *cub, char *extension);
 void	quit_parc(char *str);
 void	quit_parc_after_sc(char *str, t_scene *sc, char *line);
 void	error_map(char **w_map, int map_line, int max_map);
+int 	check_jclosed_map(int i, int j, char ***m);
+int 	check_iclosed_map(int i, int j, char ***m, int map_l);
 void	pre_check(char *line);
 void	quit_prog(t_scene *sc, char *str);
 void	free_path(t_scene *sc);
