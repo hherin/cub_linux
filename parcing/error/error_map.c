@@ -134,11 +134,8 @@ void				error_map(char **w_map, int map_l, int max_map)
 	ret = rec_check(&new_map, pl, map_l);
 	while (i < map_l + 2)
 	{
-		printf("%s\n", new_map[i]);
 		free(new_map[i]);
 		i++;
 	}
 	free(new_map);
-	// if (!ret)
-	// 	quit_parc("map not closed");
 }

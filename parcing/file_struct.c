@@ -55,7 +55,7 @@ static int	ft_getclr(char *line)
 
 static void	ft_get_resol(t_scene *sc, char *line)
 {
-	// mlx_get_screen_size(sc->win.mlx_ptr, &sc->limit.x, &sc->limit.y);
+	mlx_get_screen_size(sc->win.mlx_ptr, &sc->limit.x, &sc->limit.y);
 	sc->r.x = -1;
 	sc->r.y = -1;
 	while (*line == 'R' || *line == ' ' || *line == '\t')
@@ -68,8 +68,8 @@ static void	ft_get_resol(t_scene *sc, char *line)
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong second input in resolution");
 	if (!(sc->r.y = ft_atoi_trim(&line)))
 		quit_parc("Y resolution is invalid");
-	// (sc->r.x > sc->limit.x) ? sc->r.x = sc->limit.x : 0;
-	// (sc->r.y > sc->limit.y) ? sc->r.y = sc->limit.y : 0;
+	(sc->r.x > sc->limit.x) ? sc->r.x = sc->limit.x : 0;
+	(sc->r.y > sc->limit.y) ? sc->r.y = sc->limit.y : 0;
 	(sc->r.x % 2) ? sc->r.x++ : 0;
 	(sc->r.y % 2) ? sc->r.y++ : 0;
 	while (ft_isspace(*line))
