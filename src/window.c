@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 16:07:52 by hherin            #+#    #+#             */
-/*   Updated: 2020/07/01 17:25:27 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/13 13:41:52 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_put_pixel(char **ret_get_data_addr, int x, int y, t_scene sc)
 	int *pix_array;
 
 	pix_array = (int*)(*ret_get_data_addr);
-	pix_array[x + sc.r.x * y] = sc.color;
+	pix_array[sc.r.x * y - x] = sc.color;
 }
 
 int		ft_get_color(char *ret_get_data_addr, int start)

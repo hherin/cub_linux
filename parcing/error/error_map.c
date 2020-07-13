@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:33:44 by hherin            #+#    #+#             */
-/*   Updated: 2020/07/01 17:25:50 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/13 11:29:36 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ static void			map_copy(char **w_map, char ***dest, int map_l)
 		while (++src.y < size)
 		{
 			c = w_map[src.x][src.y];
-			(*dest)[dst.x][dst.y] = (is_player(c)) ? '0' : c;
-			(*dest)[dst.x][dst.y] = (ft_isspace(c)) ? '.' : c;
+			if (is_player(c) || c == '2' || c == '3')
+				(*dest)[dst.x][dst.y] = '0';
+			else if (ft_isspace(c))
+				(*dest)[dst.x][dst.y] = '.';
+			else
+				(*dest)[dst.x][dst.y] = c;
 			dst.y++;
 		}
 		dst.x++;
@@ -89,21 +93,25 @@ int					rec_check(char ***m, t_int_tup pos, int map_l)
 
 	i = pos.y;
 	j = pos.x;
-	while (j > 0 && (*m)[i][j - 1] == '0')
-		j--;
+	while (j > 0 && (*m)[i][j - 1] != '1')
+			j--;
 	while (j < (int)ft_strlen((*m)[i]) && (*m)[i][j] != '1')
 	{
+		(j > 0 && (*m)[i][j - 1] == '.') ? quit_parc("map not closed") : 0;
+		((*m)[i - 1][j] == '.' || (*m)[i + 1][j] == '.') ? quit_parc("map not closed") : 0;
 		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
 		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
 		j++;
 	}
 	j = pos.x;
-	while (i > 0 && ((*m)[i -1][j] == '0'))
-		i--;
+	while (i > 0 && ((*m)[i - 1][j] != '1'))
+			i--;
 	while (i < map_l + 3 && (*m)[i][j] != '1')
 	{
-		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
 		((*m)[i][j] == '.') ? quit_parc("map not closed") : 0;
+		((*m)[i][j - 1] == '.' || (*m)[i][j + 1] == '.') ? quit_parc("map not closed") : 0;
+		(i > 0 && (*m)[i - 1][j] == '.') ? quit_parc("map not closed") : 0;
+		((*m)[i][j] == '0') ? (*m)[i][j] = 'x' : 0;
 		i++;
 	}
 	pos = check_map(*m, map_l);
@@ -126,10 +134,11 @@ void				error_map(char **w_map, int map_l, int max_map)
 	ret = rec_check(&new_map, pl, map_l);
 	while (i < map_l + 2)
 	{
+		printf("%s\n", new_map[i]);
 		free(new_map[i]);
 		i++;
 	}
 	free(new_map);
-	if (!ret)
-		quit_parc("map not closed");
+	// if (!ret)
+	// 	quit_parc("map not closed");
 }

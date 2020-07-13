@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 13:44:17 by heleneherin       #+#    #+#             */
-/*   Updated: 2020/04/09 18:33:00 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/13 11:12:42 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		final_set_map(int line, int *map_line, t_scene *sc)
 
 	i = -1;
 	*map_line = line;
+	(!sc->w_map) ? quit_parc("Miss the map") : 0;
+	(sc->pl.pos.x == -1 || sc->pl.pos.y == -1) ? quit_parc("No player") : 0;
 	is_sprite(&sc->s_obj, sc->w_map, sc);
 	error_map(sc->w_map, *map_line, sc->max_map);
 }

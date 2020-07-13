@@ -6,7 +6,7 @@
 #    By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/05 20:38:20 by hherin            #+#    #+#              #
-#    Updated: 2020/07/01 17:24:42 by heleneherin      ###   ########.fr        #
+#    Updated: 2020/07/13 13:41:29 by heleneherin      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ HEAD	=	./inc/
 
 INC		=	-I ${HEAD} -I ./inc/mlx
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 
+CFLAGS	=	-Wall -Wextra -Werror -O3
 
 MLX_FLAG =	-lm -lbsd -lX11 -lXext
 

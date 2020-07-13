@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 16:58:50 by hherin            #+#    #+#             */
-/*   Updated: 2020/04/09 17:25:36 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/13 13:39:52 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	deal_key(int keyhook, t_key *key, int var, t_scene *sc)
 	if (keyhook == RIGHT_KEY || keyhook == LEFT_KEY)
 	{
 		key->rot = var;
-		key->rot_speed = (keyhook == RIGHT_KEY) ? 0.08 : -0.08;
+		key->rot_speed = (keyhook == RIGHT_KEY) ? -0.08 : 0.08;
 	}
 	(key->forw || key->left || key->right || key->back || \
 		key->right || key->rot || key->up || key->down) ? \

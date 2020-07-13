@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 15:42:22 by heleneherin       #+#    #+#             */
-/*   Updated: 2020/04/09 17:33:14 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/13 13:40:19 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		print_minimap(t_scene *sc)
 				else
 					sc->color = 8421504;
 				(x % sc->pxl.x && y % sc->pxl.y) ? \
-					ft_put_pixel(&sc->win.addr_ar, x, y, *sc) : 0;
+					ft_put_pixel(&sc->win.addr_ar, -x, y, *sc) : 0;
 			}
 		}
 		(y) ? mini_pl(16711680, sc) : 0;

@@ -6,7 +6,7 @@
 /*   By: heleneherin <heleneherin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 19:30:01 by hherin            #+#    #+#             */
-/*   Updated: 2020/04/08 14:52:28 by heleneherin      ###   ########.fr       */
+/*   Updated: 2020/07/13 11:37:14 by heleneherin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,35 @@ static char	*ft_getpath(char *line)
 static int	ft_getclr(char *line)
 {
 	int		nb;
-	int		interm;
+	int		tmp;
 
-	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong input color");
-	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
+	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong red input color");
+	if ((tmp = ft_atoi_trim(&line)) < 0 || tmp > 255)
 		quit_parc("Wrong red color");
-	(*line == ',') ? line++ : 0;
-	while (ft_isspace(*line))
+	if (*line == ',')
 		line++;
-	(!ft_isdigit(*line)) ? quit_parc("Wrong color separator") : 0;
-	nb = interm * 65536;
-	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
-		quit_parc("green color");
-	(*line == ',') ? line++ : 0;
-	while (ft_isspace(*line))
+	else
+		quit_parc("Wrong color separator1");
+	(!ft_isdigit(*line)) ? quit_parc("Wrong green input color") : 0;
+	nb = tmp * 65536;
+	if ((tmp = ft_atoi_trim(&line)) < 0 || tmp > 255)
+		quit_parc("Green color not in good range");
+	if (*line == ',')
 		line++;
-	(!ft_isdigit(*line)) ? quit_parc("Wrong color separator") : 0;
-	nb = nb + (interm * 256);
-	if ((interm = ft_atoi_trim(&line)) < 0 || interm > 255)
-		quit_parc("Wrong blue color");
-	nb = nb + interm;
-	(*line == ',') ? line++ : 0;
-	while (ft_isspace(*line))
-		line++;
-	if (*line)
-		quit_parc("Too many arguments in color");
+	else
+		quit_parc("Wrong color separator2");
+	(!ft_isdigit(*line)) ? quit_parc("Wrong blue input color") : 0;
+	nb = nb + (tmp * 256);
+	if ((tmp = ft_atoi_trim(&line)) < 0 || tmp > 255)
+		quit_parc("Blue color not in good range");
+	nb = nb + tmp;
+	(*line) ? quit_parc("Too many arguments in color") : 0;
 	return (nb);
 }
 
 static void	ft_get_resol(t_scene *sc, char *line)
 {
-	mlx_get_screen_size(sc->win.mlx_ptr, &sc->limit.x, &sc->limit.y);
+	// mlx_get_screen_size(sc->win.mlx_ptr, &sc->limit.x, &sc->limit.y);
 	sc->r.x = -1;
 	sc->r.y = -1;
 	while (*line == 'R' || *line == ' ' || *line == '\t')
@@ -70,8 +68,8 @@ static void	ft_get_resol(t_scene *sc, char *line)
 	(ft_isdigit(*line)) ? 0 : quit_parc("Wrong second input in resolution");
 	if (!(sc->r.y = ft_atoi_trim(&line)))
 		quit_parc("Y resolution is invalid");
-	(sc->r.x > sc->limit.x) ? sc->r.x = sc->limit.x : 0;
-	(sc->r.y > sc->limit.y) ? sc->r.y = sc->limit.y : 0;
+	// (sc->r.x > sc->limit.x) ? sc->r.x = sc->limit.x : 0;
+	// (sc->r.y > sc->limit.y) ? sc->r.y = sc->limit.y : 0;
 	(sc->r.x % 2) ? sc->r.x++ : 0;
 	(sc->r.y % 2) ? sc->r.y++ : 0;
 	while (ft_isspace(*line))
