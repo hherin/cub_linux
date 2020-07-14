@@ -23,7 +23,7 @@ static void	init_path(t_scene *sc)
 	sc->c_sp.path = NULL;
 	sc->b_sp.path = NULL;
 }
-
+ 
 static void	init_data(t_scene *sc)
 {
 	sc->max_map = 0;
@@ -38,6 +38,8 @@ static void	init_data(t_scene *sc)
 	sc->ray.cam_x = 0;
 	sc->nb_sprite = 0;
 	sc->see = 0;
+	sc->b_sp.img_ptr = NULL;
+	sc->c_sp.img_ptr = NULL;
 }
 
 void		init_parcing(t_scene *sc)
